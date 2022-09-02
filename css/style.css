@@ -1,9 +1,13 @@
 body {
     margin: 0;
     font-family: "Tahoma", sans-serif;
-    background-color: #faa9e3;
+    background-color: #fae6a9;
 }
 
-h1, h2, h3, p {
+h1, p {
+    margin: 40px;
+}
+
+img {
     margin: 20px;
 }
