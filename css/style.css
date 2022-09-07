@@ -1,11 +1,55 @@
 body {
-    margin: 20px;
-    padding: 10px;
-    font-family: "Tahoma", sans-serif;
-    background-color: #fae6a9;
-    border: 1px solid #8e6e53;
+  margin: 20px;
+  padding: 10px;
+  position: relative;
+  font-family: "Tahoma", sans-serif;
+  background-color: #fae6a9;
+  border: 1px solid #8e6e53;
 }
 
-h1, p {
-    margin: 40px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 40px;
+  color: rgb(31, 58, 58);
+}
+
+img {
+  margin: 20px;
+}
+
+button {
+  background-color: #c87129;
+  color: aliceblue;
+  padding: 20px;
+  font-size: 24px;
+  border: 0;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: aliceblue;
+  border: 5px solid #c87129;
+  color: #c87129;
+  display: flex;
+  justify-content: center;
+}
+
+.link {
+  display: block;
+  position: relative;
+}
+
+/* селектор класса */
+.aquamarine {
+  background: aquamarine;
+}
+
+/* селектор идентификатора */
+#title {
+  background-color: rgb(135, 107, 107);
 }
