@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: "Tahoma", "Open-Sans", "Verdana", sans-serif;
+  font-family: "Manrope", "Tahoma", "Open-Sans", "Verdana", sans-serif;
   background-color: #0b0d17;
 }
 
@@ -90,10 +90,11 @@ h3 {
 }
 
 .button-flex button {
-  padding-right: 39px;
+  padding-right: 55px;
   background-image: url("/img/vector-icon.svg");
   background-position: right;
   background-repeat: no-repeat;
+  background-position: right 12% bottom 50%;
 }
 
 button {
@@ -107,6 +108,10 @@ button {
 
 /* media */
 @media screen and (max-width: 1440px) {
+  .services-flex {
+    justify-content: space-evenly;
+    color: #f2575c;
+  }
   .services-flex__item {
     background-color: #c3c3c3;
   }
@@ -115,6 +120,7 @@ button {
 @media screen and (max-width: 1024px) {
   .services-flex {
     justify-content: space-evenly;
+    color: #8c30f5;
   }
   .services-flex__item {
     background-color: #8acaa3;
@@ -125,6 +131,7 @@ button {
 @media screen and (max-width: 768px) {
   .services-flex {
     justify-content: space-evenly;
+    color: #2a461b;
   }
   .services-flex__item {
     background-color: #60afc2;
