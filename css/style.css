@@ -2,8 +2,7 @@ body {
     margin: 20px;
     padding: 10px;
     font-family: "Tahoma", sans-serif;
-    background-color: #fae6a9;
-    border: 1px solid #8e6e53;
+    background-color: rgba(103, 180, 64, 0.66);
 }
 
 h1, p {
