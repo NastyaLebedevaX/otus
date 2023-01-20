@@ -21,7 +21,7 @@
       <div class="container">
         <div class="row">
           <div class="col-2">
-            <a href="/index.html">
+            <a href="/index.php">
               <img src="/img/logo.svg" alt="Logo" />
             </a>
           </div>
@@ -108,4 +108,24 @@
       </div>
     </section>
   </body>
+
+  <?php
+  $a = 5;
+  $b = '05';
+  var_dump($a == $b);      // проверка без указания типа (строка приводится к числу 5)
+  var_dump((int)'012345');     // при приведении строки к int отбрасывается 0 в начале строки
+  var_dump((float)123.0 === (int)123.0); // так как тройное равно (полное равенство)
+  var_dump((int)0 === (int)'hello, world'); // так как при попытке приведения строки к int нет цифр
+
+  $a1 = 1;
+  $b1 = 2;
+
+  [$a1,$b1] = [$b1,$a1];
+
+  var_dump($a1);
+  var_dump($b1);
+
+  var_dump(date('Y-m-d H:i:s'));
+  ?>
+
 </html>
