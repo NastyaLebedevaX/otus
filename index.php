@@ -10,55 +10,64 @@
 </head>
 
 <body>
-
 </body>
 
 <?php
-$a = -10;
-$b = -5;
-$result = 0;
+/**
+ * Задание №1
+ */
+function task1(): string
+{
+    $a = rand(-100, 100);
+    $b = rand(-100, 100);
 
-if ($a >= 0 && $b >= 0) {
-    $result = $a - $b;
-    var_dump($result);
-} else if ($a <= 0 && $b <= 0) {
-    $result = $a * $b;
-    var_dump($result);
-} else {
-    $result = $a + $b;
-    var_dump($result);
-}
+    $result = "Значение переменных: {$a}; {$b} </br>";
 
-$a = 10;
-
-switch ($a) {
-    case 10:
-        echo "10 ";
-    case 11:
-        echo "11 ";
-    case 12:
-        echo "12 ";
-    case 13:
-        echo "13 ";
-    case 14:
-        echo "14 ";
-    case 15:
-        echo "15";
-        break;
-}
-
-$echo = function($a) {
-    for ($a = 10; $a <= 15; $a++) {
-        if ($a > 15) {
-            break;
-        }
-        echo $a;
+    if ($a >= 0 && $b >= 0) {
+        $result .= 'Разность ' . ($a - $b);
+    } elseif ($a < 0 && $b < 0) {
+        $result .= 'Произведение ' . ($a * $b);
+    } else {
+        $result .= 'Сумма ' . ($a + $b);
     }
-};
 
-$result = match($a) {
-    10 => $echo($a)
-};
+    return $result . '</br></br>';
+}
 
+/**
+ * Задание №2
+ */
+function task2(int $currentNumber = null): string
+{
+    $limit = 15;
+    $a = $currentNumber ?? rand(0, $limit);
+
+    switch ($a) {
+        case $a <= $limit:
+            echo $a . '</br>';
+            $a++;
+            task2($a);
+            break;
+    }
+
+    return '';
+}
+
+/**
+ * Задание №3
+ */
+function task3(): string
+{
+    $limit = 15;
+    $a = rand(0, $limit);
+
+    return match($a) {
+        default => implode(', ', range($a, $limit)),
+    };
+}
+
+echo task1();
+echo task2();
+echo task3();
 ?>
 </html>
