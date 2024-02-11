@@ -2,8 +2,8 @@ body {
     margin: 20px;
     padding: 10px;
     font-family: "Tahoma", sans-serif;
-    background-color: #fae6a9;
-    border: 1px solid #8e6e53;
+    background-color: rgba(161, 173, 171, 0.47);
+    border: 1px solid rgba(75, 112, 58, 0.47);
 }
 
 h1, p {
