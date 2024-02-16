@@ -10,13 +10,7 @@
 </head>
 
 <?php
-$imgScan = scandir(realpath(__DIR__ . '/img'));
-$data = [];
-
-if (is_array($imgScan)) {
-// Удалить первые два элемента: '.' and '..'
-    $data = array_slice($imgScan, 2);
-}
+require_once 'gallery.php';
 ?>
 
 <body>
@@ -29,8 +23,8 @@ if (is_array($imgScan)) {
 
 <div class="container">
     <?php
-    foreach ($data as $img) {
-        echo '<a target="_blank" href="/img/' . $img . '"><img src="/img/' . $img . '"></a>';
+    foreach (getData() as $img) {
+        echo '<a target="_blank" href="/img/' . $img . '"><img src="/img/cropped/' . $img . '"></a>';
     }
     ?>
 </div>
