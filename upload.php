@@ -27,4 +27,4 @@ if (isset($_POST["submit"])) {
     }
 }
 
-echo '</br><a href="/index.php">Вернуться назад</a>';
+header('Location:/index.php');
