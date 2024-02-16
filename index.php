@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
+<?php
+require_once 'task.php';
+
+echo task1() . "</br>";
+echo task2() . "</br>";
+echo task3() . "</br>";
+echo task4("доброе утро") . "</br>";
+echo task5("сегодня шёл снег") . "</br>";
+?>
+
 <body>
 <h2>Где обитает Аляскинский волк?</h2>
 <?php
@@ -44,9 +54,5 @@ foreach ($menu as $key => $value) {
 }
 ?>
 </body>
-
-<?php
-require_once 'task.php';
-?>
 
 </html>

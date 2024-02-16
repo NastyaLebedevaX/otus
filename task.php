@@ -3,43 +3,49 @@
 /**
 * Задание №1
 */
-function task1(): void
+function task1() : string
 {
+    $data = [];
     $number = 1;
 
     while ($number < 100) {
         if ($number % 3 == 0) {
-            echo $number++ . ' ';
+            $data[]  = $number++;
         }
 
         $number++;
     }
+
+    return implode(' ', $data);
 }
 
 /**
  * Задание №2
 */
-function task2(): void
+function task2(): string
 {
     $number = 0;
+    $data = [];
+
     do {
         if ($number == 0) {
-            echo $number . ' – это ноль.' . PHP_EOL;
-            $number++;
+            $data[] = $number . ' – это ноль.';
         } elseif ($number % 2 != 0) {
-            echo $number . ' – нечетное число.' . PHP_EOL;
-            $number++;
+            $data[] = $number . ' – нечетное число.';
         } else {
-            echo $number . ' – четное число.' . PHP_EOL;
-            $number++;
+            $data[] = $number . ' – четное число.';
         }
+
+        $number++;
     } while ($number < 11);
+
+    return implode("</br>", $data);
 }
 
 /**
  * Задание №3
 */
-function task3(): void
+function task3(): string
 {
     $area = [
         'Московская область:' => ['Москва', 'Зеленоград', 'Клин'],
@@ -52,9 +58,9 @@ function task3(): void
 
         for ($i = 0; $i < count($area[$key]); $i++) {
             if ($i == count($area[$key]) - 1) {
-                echo $area[$key][$i] . '.' . PHP_EOL;
+                return $area[$key][$i] . '.' . PHP_EOL;
             } else {
-                echo $area[$key][$i] . ', ';
+                return $area[$key][$i] . ', ';
             }
         }
     }
@@ -63,9 +69,9 @@ function task3(): void
 /**
  * Задание №4
 */
-function task4($val): void
+function task4($val): string
 {
-    $data = array(
+    $data = [
         "а" => "a",
         "б" => "b",
         "в" => "v",
@@ -100,22 +106,16 @@ function task4($val): void
         "ю" => "yu",
         "я" => "ya",
         " " => " "
-    );
+    ];
 
     $word = strtr($val, $data);
-    echo $word;
+    return $word;
 }
 
 /**
  * Задание №5
  */
-function task5($val): void
+function task5($val): string
 {
-    echo str_replace(" ", "_", $val);
+    return str_replace(" ", "_", $val);
 }
-
-echo task1() . "</br>";
-echo task2() . "</br>";
-echo task3() . "</br>";
-echo task4("доброе утро") . "</br>";
-echo task5("в этой жизни ты либо волк, либо не волк") . "</br>";
