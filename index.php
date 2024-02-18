@@ -11,12 +11,17 @@
 
 <?php
 require_once 'gallery.php';
+require_once 'upload.php';
+
+if (isset($_POST["submit"])) {
+    downloadFile();
+}
 ?>
 
 <body>
 <h1>Gallery</h1>
 
-<form class="upload" action="upload.php" method="post" enctype="multipart/form-data">
+<form class="upload" action="index.php" method="post" enctype="multipart/form-data">
     <input type="file" name="fileToUpload" id="fileToUpload">
     <input type="submit" value="Загрузить картинку" name="submit">
 </form>

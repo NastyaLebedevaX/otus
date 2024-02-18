@@ -1,10 +1,11 @@
 <?php
 
-$targetDir = "img/";
-$targetFile = $targetDir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
+function downloadFile(): void
+{
+    $targetDir = "img/";
+    $targetFile = $targetDir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
 
-if (isset($_POST["submit"])) {
     // Проверка размера файла
     if ($_FILES["fileToUpload"]["size"] > 500000) {
         echo "Файл слишком большой.";
@@ -26,9 +27,9 @@ if (isset($_POST["submit"])) {
     } else {
         echo "Произошла ошибка при загрузке файла.";
     }
-}
 
-header('Location:/index.php');
+    header('Location:/index.php');
+}
 
 function createCroppedImage($imageName, $newWidth, $newHeight): void
 {
@@ -49,7 +50,7 @@ function createCroppedImage($imageName, $newWidth, $newHeight): void
     imagecopyresampled($smallImage, $originalImage, 0, 0, 0, 0, $newWidth, $newHeight, $originalWidth, $originalHeight);
 
 // Сохранение уменьшенной копии
-    $targetCroppedDir = realpath(__DIR__ . '/img/cropped/');
+    $targetCroppedDir = 'img/cropped/' . $imageName;
     imagejpeg($smallImage, $targetCroppedDir);
 
 // Освобождение ресурсов
