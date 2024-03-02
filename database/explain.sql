@@ -1,17 +1,17 @@
-EXPLAIN ANALYSE SELECT * FROM book_info WHERE "page_count" >= 500;
+EXPLAIN ANALYSE SELECT * FROM books WHERE "page_number" >= 500;
 
 QUERY PLAN
 
-"Seq Scan on book_info  (cost=0.00..1.06 rows=2 width=438) (actual time=0.013..0.015 rows=3 loops=1)"
-"Filter: (page_count >= 500)"
-"Rows Removed by Filter: 2"
-"Planning Time: 0.073 ms"
-"Execution Time: 0.029 ms"
+Seq Scan on books  (cost=0.00..183.40 rows=1 width=49) (actual time=1.113..1.113 rows=0 loops=1)
+Filter: (page_number >= 500)
+Rows Removed by Filter: 8192
+Planning Time: 1.461 ms
+Execution Time: 1.137 ms
 
 // После создания индекса на количество страниц
 
-"Seq Scan on book_info  (cost=0.00..1.06 rows=2 width=438) (actual time=0.015..0.017 rows=3 loops=1)"
-"Filter: (page_count >= 500)"
-"Rows Removed by Filter: 2"
-"Planning Time: 1.547 ms"
-"Execution Time: 0.034 ms"
+Seq Scan on books  (cost=0.00..183.40 rows=1 width=49) (actual time=0.929..0.929 rows=0 loops=1)
+Filter: (page_number >= 500)
+Rows Removed by Filter: 8192
+Planning Time: 0.088 ms
+Execution Time: 0.944 ms
