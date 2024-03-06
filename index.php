@@ -42,19 +42,23 @@ require_once('books.php');
         <!-- Content Row-->
         <div class="row gx-4 gx-lg-5">
             <?php
-
-            foreach (getBooks() as $row) { ?>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title"><?= $row['title'] ?></h2>
-                            <p class="card-text">Год выпуска: <?= $row['publication_year'] ?></p>
-                            <p class="card-text">Количество страниц: <?= $row['page_number'] ?></p>
-                            <p class="card-text">Авторы: <?= $row['authors'] ?></p>
+            $books = getBooks();
+            if (!empty($books)) {
+                foreach ($books as $row) { ?>
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h2 class="card-title"><?= $row['title'] ?></h2>
+                                <p class="card-text">Год выпуска: <?= $row['publication_year'] ?></p>
+                                <p class="card-text">Количество страниц: <?= $row['page_number'] ?></p>
+                                <p class="card-text">Авторы: <?= $row['authors'] ?></p>
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">Перейти</a></div>
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">Перейти</a></div>
                     </div>
-                </div>
+                <?php } ?>
+            <?php } else { ?>
+                <h2 class="card-title">Книги не найдены.</h2>
             <?php } ?>
         </div>
     </div>
