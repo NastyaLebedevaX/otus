@@ -23,6 +23,7 @@ if (isset($_POST["registration"])) {
         <button>Назад</button>
     </a>
     <div class="login-form">
+        <?= getNotifications();?>
         <form action="registration.php" method="post">
             <h1>Регистрация</h1>
             <div class="content">

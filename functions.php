@@ -28,31 +28,26 @@ function downloadFile(): void
 {
     $targetDir = "img/";
     $targetFile = $targetDir . basename($_FILES["fileToUpload"]["name"]);
-    $uploadOk = 1;
+    $errors = [];
 
     // Проверка размера файла
     if ($_FILES["fileToUpload"]["size"] > 500000) {
-        echo "Файл слишком большой.";
-        $uploadOk = 0;
+        $errors[] = 'Файл слишком большой';
     }
 
     // Разрешенные форматы файлов
     $allowedExtensions = array("jpg", "jpeg", "png", "gif");
     $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
     if (!in_array($imageFileType, $allowedExtensions)) {
-        echo "Разрешены только файлы JPG, JPEG, PNG и GIF.";
-        $uploadOk = 0;
+        $errors[] = 'Разрешены только файлы JPG, JPEG, PNG и GIF.';
     }
 
-    // Проверка наличия ошибок и загрузка файла
-    if ($uploadOk == 1 && move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
+    if (!empty($errors)) {
+        setNotification(implode("<br>", $errors));
+    } elseif (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
         createCroppedImage($_FILES["fileToUpload"]["name"], 250, 250);
-        echo "Файл успешно загружен.";
-    } else {
-        echo "Произошла ошибка при загрузке файла.";
+        setNotification('Файл успешно загружен');
     }
-
-    header('Location:/index.php');
 }
 
 function createCroppedImage($imageName, $newWidth, $newHeight): void
@@ -96,9 +91,30 @@ function registration(): void
             'username' => $_POST['username'],
             'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
         ]);
+    } else {
+        setNotification('Пользователь уже зарегистрирован.');
+        header('Location: registration.php');
+        return;
     }
 
     header('Location: login.php');
+}
+
+function setNotification(string $string): void
+{
+    $_SESSION['notification'] = $string;
+}
+
+function getNotifications(): string
+{
+    if (empty($_SESSION['notification'])) {
+        return '';
+    }
+
+    $notification = '<h3 style="margin: 10px auto;">' . $_SESSION['notification'] . '</h3>';
+    $_SESSION['notification'] = null;
+
+    return $notification;
 }
 
 function login(): void
@@ -108,8 +124,9 @@ function login(): void
     $sql->execute(['username' => $_POST['username']]);
 
     if (!$sql->rowCount()) {
+        setNotification('Пользователь не найден.');
         header('Location: login.php');
-        die;
+        return;
     }
 
     $user = $sql->fetch(PDO::FETCH_ASSOC);
@@ -118,8 +135,8 @@ function login(): void
     if (password_verify($_POST['password'], $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
         header('Location: /');
-        die;
+        return;
     }
 
-    header('Location: login.php');
+    setNotification('Некорректный пароль. Авторизация невозможна');
 }

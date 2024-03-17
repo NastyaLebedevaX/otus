@@ -30,6 +30,7 @@ require_once 'functions.php';
     ?>
 
     <div class="login-form">
+        <?= getNotifications();?>
         <div class="action">
             <a style="width: 100%;" href="exit.php">
                 <button>Выход</button>

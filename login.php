@@ -18,11 +18,13 @@ if (isset($_POST["login"])) {
     login();
 }
 ?>
+
 <div class="container">
     <a style="width: 100%;" href="index.php">
         <button>Назад</button>
     </a>
     <div class="login-form">
+        <?= getNotifications();?>
         <form action="login.php" method="post">
             <h1>Авторизация</h1>
             <div class="content">
