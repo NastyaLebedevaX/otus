@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 require_once('connect.php');
-require_once('books.php');
+require_once('functions.php');
 ?>
 
 <html lang="ru">
@@ -25,13 +25,27 @@ require_once('books.php');
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
-
+                    <form action="index.php" method="post" class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Поиск" name="search"
+                               aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Искать</button>
+                    </form>
                 </ul>
-                <form action="index.php" method="post" class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Поиск" name="search"
-                           aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Искать</button>
-                </form>
+                <?php if (checkAuth()): ?>
+                    <?= ("<h4>Добро пожаловать, " . $_SESSION['user_name'] . "</h4>") ?>
+                    <?php if (isAdmin()): ?>
+                        <form action="addbook.php" method="post" class="d-flex">
+                            <button style="margin-left: 20px;" class="btn btn-outline-success">Добавить книгу</button>
+                        </form>
+                    <?php endif; ?>
+                    <form action="exit.php" method="post" class="d-flex">
+                        <button style="margin-left: 20px;" class="btn btn-outline-success">Выход</button>
+                    </form>
+                <?php else: ?>
+                    <form action="login.php" method="post" class="d-flex">
+                        <button class="btn btn-outline-success">Вход</button>
+                    </form>
+                <?php endif; ?>
             </div>
         </div>
     </nav>
@@ -42,12 +56,15 @@ require_once('books.php');
         <!-- Content Row-->
         <div class="row gx-4 gx-lg-5">
             <?php
-            $books = getBooks();
+            $books = checkAuth() ? getBooks() : [];
             if (!empty($books)) {
                 foreach ($books as $row) { ?>
                     <div class="col-md-4 mb-5">
                         <div class="card h-100">
                             <div class="card-body">
+                                <a href="/img/<?= $row['image_path'] ?>" data-toggle="lightbox">
+                                    <img src="/img/cropped/<?= $row['image_path'] ?>">
+                                </a>
                                 <h2 class="card-title"><?= $row['title'] ?></h2>
                                 <p class="card-text">Год выпуска: <?= $row['publication_year'] ?></p>
                                 <p class="card-text">Количество страниц: <?= $row['page_number'] ?></p>
@@ -73,5 +90,6 @@ require_once('books.php');
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.3/dist/index.bundle.min.js"></script>
 </body>
 </html>

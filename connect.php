@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 function getDbConnection(): PDO
 {
     $host = 'localhost';
@@ -8,5 +10,7 @@ function getDbConnection(): PDO
     $dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
     $username = 'postgres';
     $passwd = 'postgres';
-    return new PDO($dsn, $username, $passwd);
+    $pdo = new PDO($dsn, $username, $passwd);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    return $pdo;
 }
